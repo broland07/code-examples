@@ -1,0 +1,42 @@
+- name: Install pre-req k8s packages
+  apt:
+    update_cache: yes
+    pkg: ['apt-transport-https', 'ca-certificates']
+    state: present
+
+- name: add kubernetes apt key
+  get_url:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    dest: /usr/share/keyrings/kubernetes-archive-keyring.gpg
+
+- name: add kubernetes apt repo
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main"
+    state: present
+    update_cache: yes
+
+- name: Install default k8s packages
+  apt:
+    update_cache: yes
+    pkg: ['kubelet', 'kubeadm', 'kubectl']
+    state: present
+
+- name: Hold k8s packages
+  dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  with_items:
+    - kubelet
+    - kubeadm
+    - kubectl
+
+- name: Creates /opt/bin directory
+  file:
+    path: /opt/bin
+    state: directory
+
+- name: Prep Flannel CNI
+  ansible.builtin.get_url:
+    url: https://github.com/flannel-io/flannel/releases/download/v0.19.0/flanneld-amd64
+    dest: /opt/bin/flanneld
+    mode: '0755'

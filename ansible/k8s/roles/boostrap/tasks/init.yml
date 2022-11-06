@@ -1,0 +1,11 @@
+- name: Pre download the images
+  shell: kubeadm config images pull
+
+- name: Init cluster
+  shell: |
+    kubeadm init --pod-network-cidr=10.244.0.0/16 \
+    --cri-socket=unix:///run/containerd/containerd.sock
+
+# solve it better
+- name: Init cluster
+  shell: mkdir -p $HOME/.kube && cp -i /etc/kubernetes/admin.conf $HOME/.kube/config && chown $(id -u):$(id -g) $HOME/.kube/config

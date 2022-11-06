@@ -1,0 +1,15 @@
+- name: Enable kernel modules
+  import_tasks: kernel-mod.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Disable SWAP
+  import_tasks: dis-swap.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: CRI
+  import_tasks: cri.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: K8s packages
+  import_tasks: k8s.yml
+  when: ansible_distribution == 'Ubuntu'

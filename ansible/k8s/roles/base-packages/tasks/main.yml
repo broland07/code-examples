@@ -1,0 +1,3 @@
+- name: apt update and install base packages
+  import_tasks: base-packages.yml
+  when: ansible_distribution == 'Ubuntu'

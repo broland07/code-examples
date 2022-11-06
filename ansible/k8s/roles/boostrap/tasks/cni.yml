@@ -1,0 +1,6 @@
+# solve it better
+- name: Install CNI - Flannel
+  shell: kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
+
+- name: Show cluster info
+  shell: kubectl cluster-info

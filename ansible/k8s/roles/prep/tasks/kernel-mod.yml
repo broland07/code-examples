@@ -1,0 +1,22 @@
+- name: Add overlay module
+  modprobe:
+    name: overlay
+    state: present
+
+- name: Add br_netfilter module
+  modprobe:
+    name: br_netfilter
+    state: present
+
+- name: Make for it a config file
+  copy:
+    src: files/k8s.conf
+    dest: /etc/modules-load.d/k8s.conf
+
+- name: Config file for systemctl
+  copy:
+    src: files/k8s-sys.conf
+    dest: /etc/sysctl.d/k8s.conf
+
+- name: systemctl system
+  shell: sysctl --system

@@ -1,0 +1,31 @@
+- name: add docker apt key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: add docker apt repo
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
+    state: present
+    update_cache: yes
+
+- name: Install containerd CRI package
+  apt:
+    update_cache: yes
+    pkg: ['containerd.io']
+    state: present
+
+- name: Regenerate containerd config
+  shell: mv /etc/containerd/config.toml /etc/containerd/config.toml.orig && containerd config default > /etc/containerd/config.toml
+
+- name: Change systemdcgroup setting in containerd config
+  replace:
+    path: /etc/containerd/config.toml
+    regexp: 'SystemdCgroup = false'
+    replace: 'SystemdCgroup = true'
+
+- name: Enable and reload containerd
+  systemd:
+    name: containerd
+    state: restarted
+    enabled: yes
