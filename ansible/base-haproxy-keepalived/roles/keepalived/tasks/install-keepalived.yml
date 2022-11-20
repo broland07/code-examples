@@ -1,0 +1,5 @@
+- name: Install default packages
+  apt:
+    update_cache: yes
+    pkg: ['keepalived']
+    state: present

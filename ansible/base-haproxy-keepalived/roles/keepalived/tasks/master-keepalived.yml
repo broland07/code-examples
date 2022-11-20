@@ -1,0 +1,5 @@
+  - name: Copy keepalived master config
+    template:
+      src: templates/master.j2
+      dest: /etc/keepalived/keepalived.conf
+      backup: yes

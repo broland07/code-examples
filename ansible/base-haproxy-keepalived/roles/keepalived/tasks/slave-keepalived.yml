@@ -1,0 +1,5 @@
+  - name: Copy keepalived slave config
+    template:
+      src: templates/slave.j2
+      dest: /etc/keepalived/keepalived.conf
+      backup: yes

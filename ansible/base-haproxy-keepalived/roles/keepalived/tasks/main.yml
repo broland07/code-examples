@@ -1,0 +1,13 @@
+- name: Install keepalived
+  import_tasks: install-keepalived.yml
+
+- name: Copy keepalived master config
+  import_tasks: master-keepalived.yml
+  when: inventory_hostname == 'master'
+
+- name: Copy keepalived slave config
+  import_tasks: slave-keepalived.yml
+  when: inventory_hostname == 'slave'
+
+- name: Copy keepalived slave config
+  import_tasks: start-keepalived.yml

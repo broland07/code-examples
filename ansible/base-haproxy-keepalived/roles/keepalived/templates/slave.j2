@@ -1,0 +1,40 @@
+#global_defs {
+#    notification_email {
+#        id@domain.com
+#    }
+#    notification_email_from id@domain.com
+#    smtp_server 127.0.0.1
+#    smtp_connect_timeout 15
+#}
+
+vrrp_script chk_haproxy {
+    script "/usr/bin/killall -0 haproxy"
+    interval 2
+    weight 2
+}
+
+vrrp_instance LB_VIP {
+    interface ens18
+    state BACKUP
+    priority 100
+    virtual_router_id 51
+
+#    smtp_alert
+
+    authentication {
+        auth_type AH
+        auth_pass myP@ssword
+    }
+    unicast_src_ip $SLAVEIP # Private IP address of the backup haproxy
+    unicast_peer {
+        $MASTERIP    # Private IP address of the master haproxy
+   }
+
+    virtual_ipaddress {
+        $VIRTIP
+    }
+
+    track_script {
+        chk_haproxy
+    }
+}

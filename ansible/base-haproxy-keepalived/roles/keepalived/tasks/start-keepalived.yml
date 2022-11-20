@@ -1,0 +1,5 @@
+- name: start keepalived
+  systemd:
+    name: keepalived
+    state: started
+    enabled: yes

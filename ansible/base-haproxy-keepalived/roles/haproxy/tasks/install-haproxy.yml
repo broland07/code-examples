@@ -1,0 +1,23 @@
+- name : Updates and upgrades
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: Remove useless packages from the cache
+  apt:
+    autoclean: yes
+
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
+
+- name: Add HAProxy PPA
+  apt_repository:
+    repo: 'ppa:vbernat/haproxy-2.6'
+    state: present
+
+- name: Install default packages
+  apt:
+    update_cache: yes
+    pkg: ['haproxy=2.6*']
+    state: present

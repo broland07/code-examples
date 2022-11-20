@@ -1,0 +1,7 @@
+- name: Copy file with owner and permissions
+  copy:
+    src: files/haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+    owner: root
+    group: root
+    mode: "0644"
