@@ -1,0 +1,29 @@
+- name : Updates and upgrades
+  apt:
+    upgrade: dist
+    update_cache: yes
+  tags:
+    - upgrade
+
+- name: Remove useless packages from the cache
+  apt:
+    autoclean: yes
+
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
+
+- name: Install default packages
+  apt:
+    update_cache: yes
+    pkg: ['iotop', 'iftop', 'ncdu', 'htop', 'mc', 'screen', 'tcpdump', 'curl', 'wget', 'nano', 'apt-transport-https', 'ca-certificates', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+    state: present
+
+- name: Install pip3 packages
+  pip:
+    name: tldr
+    executable: pip3
+
+- name: Set timezone variables
+  timezone:
+    name: Europe/Bucharest
