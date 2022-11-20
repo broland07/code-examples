@@ -1,0 +1,6 @@
+- name: Set authorized keys
+  authorized_key:
+    user: root
+    state: present
+    exclusive: True
+    key: https://szerverlabor.hu/keys/base.keys
