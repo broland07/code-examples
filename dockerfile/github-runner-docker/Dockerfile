@@ -18,4 +18,4 @@ RUN curl -o actions-runner-linux-x64-2.299.1.tar.gz -L https://github.com/action
 
 RUN tar xzf ./actions-runner-linux-x64-2.299.1.tar.gz
 
-RUN ./config.sh --url https://github.com/broland07/code-examples --token $TOKEN
+RUN ./config.sh --url $GHURL --token $TOKEN
