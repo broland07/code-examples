@@ -7,4 +7,4 @@ If you want to connect workers to the cluster, you need to copy out the kubeadm 
 
 
 Tested on:
-Ubuntu 22.04 LTS - K8s version: v1.25.2
+Ubuntu 22.04 LTS - K8s version: v1.25.4
