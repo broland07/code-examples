@@ -13,7 +13,7 @@ def caesar(text, shift_amount, which_direction):
     elif which_direction == "decode":
       new_position = position - shift_amount
     plain_text += alphabet[new_position]
-  print(f"The decoded text is {plain_text}")
+  print(f"The {direction}d text is {plain_text}")
 
 if direction == "encode":
   caesar(text=text, shift_amount=shift ,which_direction=direction)
