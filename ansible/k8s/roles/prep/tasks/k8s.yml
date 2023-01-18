@@ -37,6 +37,6 @@
 
 - name: Prep Flannel CNI
   ansible.builtin.get_url:
-    url: https://github.com/flannel-io/flannel/releases/download/v0.19.0/flanneld-amd64
+    url: https://github.com/flannel-io/flannel/releases/download/v0.20.2/flanneld-amd64
     dest: /opt/bin/flanneld
     mode: '0755'
