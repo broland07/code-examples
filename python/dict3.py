@@ -13,6 +13,7 @@ while not end:
     elif end_of == "No" or end_of == "no":
         end = True
 
+os.system('clear')
 for elements in dict:
     get_value = dict[elements]
     print(f"The key is: {elements}, and the value is: {get_value}.")
