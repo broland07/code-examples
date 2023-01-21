@@ -16,4 +16,6 @@ while not end:
 os.system('clear')
 for elements in dict:
     get_value = dict[elements]
+    if elements == "123":
+        get_value = 666
     print(f"The key is: {elements}, and the value is: {get_value}.")
