@@ -20,7 +20,6 @@ if __name__ == '__main__':
     slack_data = {
         "username": "NotificationBot",
         "icon_emoji": ":moneybag:",
-        #"channel" : "#home-lab",
         "attachments": [
             {
                 "color": "#9733EE",
