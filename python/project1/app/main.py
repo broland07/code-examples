@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import json
-import random
 import requests
 
 response = requests.get("https://www.napiarfolyam.hu/%C3%A1rfolyam/OTP+Bank/deviza%C3%A1rfolyamok/")
