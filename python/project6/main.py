@@ -32,4 +32,13 @@ temp_list =  data["temp"].to_list()
 
 # print(data["temp"].max())
 
-print(data.condition)
+# print(data.condition)
+
+# print(data[data.day == "Monday"])
+#max_temp = data["temp"].max()
+#max_temp = data[data.temp].max()
+# print(data[data.temp == data.temp.max()])
+
+monday = data[data.day == "Monday"]
+celsius = monday.temp
+print(celsius * 1.8 + 32)
