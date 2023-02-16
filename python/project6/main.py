@@ -39,6 +39,15 @@ temp_list =  data["temp"].to_list()
 #max_temp = data[data.temp].max()
 # print(data[data.temp == data.temp.max()])
 
-monday = data[data.day == "Monday"]
-celsius = monday.temp
-print(celsius * 1.8 + 32)
+# monday = data[data.day == "Monday"]
+# celsius = monday.temp
+# print(celsius * 1.8 + 32)
+
+data_dict = {
+    "students": ["John", "Albis", "Sarah"],
+    "scores": [76, 56, 65]
+}
+
+data = pandas.DataFrame(data_dict)
+data.to_csv("new_data.csv")
+#print(data)
