@@ -10,7 +10,7 @@ with open("weather_data.csv") as wdata:
     next(data)
     temperatures = []
     for row in data:
-        int_row = int(row[1])
-        temperatures.append(int_row)
+#        int_row = int(row[1])
+        temperatures.append(int(row[1]))
 
 print(temperatures)
