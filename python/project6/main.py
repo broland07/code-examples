@@ -25,5 +25,7 @@ data = pandas.read_csv("weather_data.csv")
 # print(data_dict)
 
 temp_list =  data["temp"].to_list()
-average = sum(temp_list)/len(temp_list)
-print(round(average))
+# average = sum(temp_list)/len(temp_list)
+# print(round(average))
+
+print(data["temp"].mean())
