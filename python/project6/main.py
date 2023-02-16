@@ -3,14 +3,19 @@
 
 # print(lines)
 
-import csv
+# import csv
 
-with open("weather_data.csv") as wdata:
-    data = csv.reader(wdata)
-    next(data)
-    temperatures = []
-    for row in data:
-#        int_row = int(row[1])
-        temperatures.append(int(row[1]))
+# with open("weather_data.csv") as wdata:
+#     data = csv.reader(wdata)
+#     next(data)
+#     temperatures = []
+#     for row in data:
+# #        int_row = int(row[1])
+#         temperatures.append(int(row[1]))
 
-print(temperatures)
+# print(temperatures)
+
+import pandas
+
+data = pandas.read_csv("weather_data.csv")
+print(data["temp"])
