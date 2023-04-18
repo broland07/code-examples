@@ -1,0 +1,21 @@
+- lineinfile:
+    dest: "{{ mysqld_config }}"
+    regexp: '^\wsrep_cluster_address=gcomm://'
+    line: 'wsrep_cluster_address=gcomm://{{ la_node_1 }},{{ la_node_2 }},{{ la_node_3 }}'
+    state: present
+  tags:
+  - bootstrap
+
+- name: Stop mysql@bootstrap
+  service:
+    name: mysql@bootstrap.service
+    state: stopped
+  tags:
+  - bootstrap
+
+- name: Restart mysql
+  service:
+    name: mysql
+    state: restarted
+  tags:
+  - bootstrap

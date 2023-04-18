@@ -1,0 +1,26 @@
+- name: Push certs file to nodes
+  template: 
+    src: /tmp/ca.pem
+    dest: "/var/lib/mysql/"
+    owner: mysql
+    mode: "0600"
+  tags:
+  - install
+
+- name: Push certs file to nodes
+  template: 
+    src: /tmp/server-key.pem
+    dest: "/var/lib/mysql/"
+    owner: mysql
+    mode: "0600"
+  tags:
+  - install
+
+- name: Push certs file to nodes
+  template: 
+    src: /tmp/server-cert.pem
+    dest: "/var/lib/mysql/"
+    owner: mysql
+    mode: "0600"
+  tags:
+  - install

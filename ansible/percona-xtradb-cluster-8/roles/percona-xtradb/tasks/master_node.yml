@@ -1,0 +1,21 @@
+- name: Get running consumer processes
+  shell: "ps -ef | grep -v grep | grep -w 'wsrep' | awk '{print $2}'"
+  register: wsrep
+  tags:
+  - bootstrap
+
+- name: Start mysql bootstrap
+  command: >
+    systemctl start mysql@bootstrap.service
+  check_mode: no
+  failed_when: false
+  when: wsrep.stdout == ""
+  tags:
+  - bootstrap
+
+- name: Update root password
+  command: >
+    mysql --user=root --execute="ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY '{{ percona_mysql_root_password }}'"
+  when: wsrep.stdout == ""
+  tags:
+  - bootstrap

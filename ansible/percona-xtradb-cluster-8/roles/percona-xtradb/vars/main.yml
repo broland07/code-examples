@@ -1,0 +1,19 @@
+# System
+systemd_service_location: "/lib/systemd/system/mysql.service"
+
+# Packages
+percona_pkg: "percona-release_latest.generic_all.deb"
+percona_apt_pkg: "percona-xtradb-cluster"
+
+# Root password
+percona_mysql_root_password: "secretpassword"
+
+# Config files
+mysqld_config: "/etc/mysql/mysql.conf.d/mysqld.cnf"
+
+# Cluster setup
+cluster_name: "pxc-cluster"
+
+la_node_1: "1.1.1.1"
+la_node_2: "2.2.2.2"
+la_node_3: "3.3.3.3"

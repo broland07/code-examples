@@ -1,0 +1,23 @@
+- name: Pull certs file from bootstrap node
+  fetch:
+    src: "/var/lib/mysql/ca.pem"
+    dest: /tmp/
+    flat: yes
+  tags:
+  - install
+
+- name: Pull certs file from bootstrap node
+  fetch:
+    src: "/var/lib/mysql/server-cert.pem"
+    dest: /tmp/
+    flat: yes
+  tags:
+  - install
+
+- name: Pull certs file from bootstrap node
+  fetch:
+    src: "/var/lib/mysql/server-key.pem"
+    dest: /tmp/
+    flat: yes
+  tags:
+  - install

@@ -1,0 +1,17 @@
+- name: Copy mysqld config file
+  template: 
+    src: templates/mysqld.cnf.j2
+    dest: "{{ mysqld_config }}"
+    owner: root
+    mode: "0644"
+  tags:
+  - install
+
+- name: Create /root/.my.cnf
+  template: 
+    src: templates/my.cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    mode: "0600"
+  tags:
+  - install

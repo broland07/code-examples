@@ -1,0 +1,40 @@
+- name: Download percona package
+  get_url:
+    url: https://repo.percona.com/apt/{{ percona_pkg }}
+    dest: /tmp/
+  tags:
+  - install
+
+- name: Install percona package
+  apt: 
+    deb: "/tmp/{{ percona_pkg }}"
+    state: present
+  failed_when: false
+  tags:
+  - install
+
+- name: Update apt
+  apt: 
+    update_cache: yes
+  tags:
+  - install
+
+- name: "Enable Percona repository"
+  command: "percona-release setup pxc80"
+  tags:
+  - install
+
+- name: Install percona xtradb cluster
+  apt:
+    update_cache: yes
+    pkg: ["{{ percona_apt_pkg }}"]
+    state: present
+  tags:
+  - install
+
+- name: Stop mysql
+  service:
+    name: mysql
+    state: stopped
+  tags:
+  - install

@@ -1,0 +1,26 @@
+- name: Stop mysql
+  systemd:
+    name: mysql
+    state: stopped
+  ignore_errors: True
+  tags:
+  - purge
+
+- name: Uninstall percona packages
+  apt:
+    name: percona-xtradb-cluster-server, percona-xtradb-cluster-client, percona-xtradb-cluster-common, percona-xtradb-cluster, percona-toolkit, percona-release
+    state: absent
+    purge: True
+    autoclean: yes  
+  tags:
+  - purge
+
+- name: Delete mysql files
+  shell:  |
+    rm -rf /etc/mysql/
+    rm -rf /var/lib/mysql/
+    rm -rf /var/lib/mysql-files/
+    rm -rf /var/lib/mysql-keyring/
+    rm -rf /var/log/mysql/
+  tags:
+  - purge

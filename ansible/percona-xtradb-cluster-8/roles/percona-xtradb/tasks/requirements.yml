@@ -1,0 +1,14 @@
+- name: Install required packages
+  apt:
+    update_cache: yes
+    pkg: ['wget', 'gnupg2', 'lsb-release', 'curl']
+    state: present
+  tags:
+  - install
+
+- name: Install package for mysql ansible
+  apt:
+    pkg: ['python3-pymysql']
+    state: present
+  tags:
+  - install

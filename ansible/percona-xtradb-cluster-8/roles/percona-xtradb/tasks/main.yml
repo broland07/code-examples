@@ -1,0 +1,37 @@
+- name: Required packages
+  import_tasks: requirements.yml
+
+- name: Check if Service Exists
+  stat: path={{ systemd_service_location }}
+  register: service_status
+
+- name: Install Percona-galera packages
+  import_tasks: install_percona.yml
+  when: not service_status.stat.exists
+  register: service_stopped
+
+- name: Copy config files
+  import_tasks: config_files.yml
+
+- name: Master node setup
+  import_tasks: master_node.yml
+  when: inventory_hostname == "galera1"
+
+- name: Pull certs
+  import_tasks: pull_certs.yml
+  when: inventory_hostname == "galera1"
+
+- name: Push certs
+  import_tasks: push_certs.yml
+  when: inventory_hostname != "galera1"
+
+- name: Other nodes start
+  import_tasks: other_node.yml
+  when: inventory_hostname != "galera1"
+
+- name: Master node last steps
+  import_tasks: master_last.yml
+  when: inventory_hostname == "galera1"
+
+- name: Delete everything
+  import_tasks: delete_all.yml
