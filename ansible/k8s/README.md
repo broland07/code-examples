@@ -1,4 +1,4 @@
-# k8s-ansible
+## k8s-ansible
 Simple kubernetes cluster setup ansible script, which install all the dependencies on master and worker nodes with flannel CNI, and init the cluster.
 
 # How to connect workers to the cluster?
